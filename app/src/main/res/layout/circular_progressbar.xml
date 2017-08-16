@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@color/white"
+	android:padding="24dp">
+
+	<com.raincan.app.views.progress_view.ProgressBarCircularIndeterminate
+		android:id="@+id/progressBarCircularIndeterminate"
+		android:layout_width="36dp"
+		android:layout_height="36dp"
+		android:layout_alignParentLeft="true"
+		android:layout_centerVertical="true"
+		android:background="@color/colorPrimary"
+		android:gravity="center"/>
+
+	<com.raincan.app.views.TypefacedTextView
+		android:id="@+id/upgrade_title_textview"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_toRightOf="@+id/progressBarCircularIndeterminate"
+		android:padding="20dp"
+		android:text="Loading..."
+		android:textColor="@color/colorPrimary"
+		android:textSize="16sp"
+		app:customTypeface="LatoNormal"/>
+
+</RelativeLayout>
