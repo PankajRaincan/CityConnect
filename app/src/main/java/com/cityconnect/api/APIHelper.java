@@ -1,26 +1,14 @@
-package com.cityconnect;
+package com.cityconnect.api;
 
 
-import android.util.Log;
+import com.cityconnect.model.SignInDTO;
 
-import com.google.gson.Gson;
-
-import org.json.JSONObject;
-
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
-import okio.Buffer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

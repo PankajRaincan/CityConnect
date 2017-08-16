@@ -1,4 +1,4 @@
-package com.cityconnect;
+package com.cityconnect.model;
 
 import com.google.gson.annotations.SerializedName;
 

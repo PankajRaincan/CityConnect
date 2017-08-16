@@ -1,9 +1,11 @@
-package com.cityconnect;
+package com.cityconnect.api;
 
 
 
 
 //import com.raincan.app.dto.ServerDate;
+
+import com.cityconnect.model.SignInDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
