@@ -1,14 +1,23 @@
 package com.cityconnect.api;
 
 
-import com.cityconnect.model.SignInDTO;
+import android.util.Log;
 
+import com.cityconnect.model.AddService;
+import com.cityconnect.model.SignInDTO;
+import com.google.gson.Gson;
+
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -134,5 +143,117 @@ public class APIHelper {
         });
     }
 
+
+    public void getAllServices(final OnRequestComplete onRequestComplete) {
+
+        apiService.getAllServices().enqueue(new Callback<ArrayList<AddService>>() {
+            @Override
+            public void onResponse(Call<ArrayList<AddService>> call, Response<ArrayList<AddService>> response) {
+
+                if (response.body() != null) {
+                    try {
+                        if (response.isSuccessful()) {
+                            onRequestComplete.onSuccess(response.body());
+                        } else {
+                            onRequestComplete.onFailure(response.errorBody().toString());
+                        }
+                    } catch (Exception e) {
+                        onRequestComplete.onFailure(showGeneralizedError());
+                    }
+                } else {
+                    onRequestComplete.onFailure(showGeneralizedError());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<AddService>> call, Throwable t) {
+
+                t.printStackTrace();
+                Log.v("Error--",""+t.getMessage());
+                try {
+                    if (t.getMessage() != null) {
+                        onRequestComplete.onFailure(showTimeoutError());
+
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    onRequestComplete.onFailure(showTimeoutError());
+
+                }
+
+            }
+        });
+    }
+
+    public void addService(File file, AddService user, final OnRequestComplete onRequestComplete) {
+        RequestBody requestBody = null;
+        String userString = new Gson().toJson(user);
+
+        if (file != null) {
+            requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("image", file.getName(), RequestBody.create(MediaType.parse("image"), file))
+                    .addFormDataPart("name", user.getName())
+                    .addFormDataPart("email", user.getEmail())
+                    .addFormDataPart("mobile", user.getMobile())
+                    .addFormDataPart("address_line_one", user.getAddress1())
+                    .addFormDataPart("address_line_two", user.getAddress2())
+                    .addFormDataPart("dob", user.getDob())
+                    .addFormDataPart("description", user.getDesc())
+                    .addFormDataPart("lat", user.getLatitude())
+                    .addFormDataPart("lng", user.getLongitude())
+                    .build();
+        } else {
+            requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("name", user.getName())
+                    .addFormDataPart("email", user.getEmail())
+                    .addFormDataPart("mobile", user.getMobile())
+                    .addFormDataPart("address_line_one", user.getAddress1())
+                    .addFormDataPart("address_line_two", user.getAddress2() != null ? user.getAddress2() : "")
+                    .addFormDataPart("dob", user.getDob())
+                    .addFormDataPart("description", user.getDesc())
+                    .addFormDataPart("lat", user.getLatitude())
+                    .addFormDataPart("lng", user.getLongitude())
+                    .build();
+        }
+
+        apiService.addService(requestBody).enqueue(new Callback<AddService>() {
+            @Override
+            public void onResponse(Call<AddService> call, Response<AddService> response) {
+                if (response.body() != null) {
+                    try {
+                        if (response.isSuccessful()) {
+                            onRequestComplete.onSuccess(response.body());
+                        } else {
+                            onRequestComplete.onFailure(response.errorBody().toString());
+                        }
+                    } catch (Exception e) {
+                        onRequestComplete.onFailure(showGeneralizedError());
+                    }
+                } else {
+                    onRequestComplete.onFailure(showGeneralizedError());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddService> call, Throwable t) {
+                try {
+                    if (t.getMessage() != null) {
+//                        app.getLogger().error(t.getMessage());
+                        onRequestComplete.onFailure(showTimeoutError());
+
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    onRequestComplete.onFailure(showTimeoutError());
+
+                }
+            }
+
+        });
+    }
 }
 

@@ -35,7 +35,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/logo" />
+                android:src="@drawable/ic_photo_camera_black_24dp" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -62,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Mobile"
                     android:inputType="number"
+                    android:maxLength="10"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
@@ -89,6 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Date of Birth"
+                    android:text="2017/08/16"
+                    android:editable="false"
                     android:inputType="date"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
@@ -134,6 +137,42 @@
                     android:inputType="text"
                     android:maxLines="3" />
             </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/latitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Latitude"
+                    android:inputType="text"
+                    android:maxLines="3" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/longitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Longitude"
+                    android:inputType="text"
+                    android:maxLines="3" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/change_location"
+                android:layout_width="wrap_content"
+                android:text="change location"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

@@ -5,10 +5,15 @@ package com.cityconnect.api;
 
 //import com.raincan.app.dto.ServerDate;
 
+import com.cityconnect.model.AddService;
 import com.cityconnect.model.SignInDTO;
 
+import java.util.ArrayList;
+
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface APIService {
@@ -25,5 +30,11 @@ public interface APIService {
 
     @POST("/api/admin/signIn")
     Call<SignInDTO> signIn(@Body SignInDTO signInDTO);
+
+    @POST("/api/serviceProvider")
+    Call<AddService> addService(@Body RequestBody addService);
+
+    @GET("/api/serviceProvider/all")
+    Call<ArrayList<AddService>> getAllServices();
 
 }

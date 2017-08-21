@@ -3,6 +3,7 @@ package com.cityconnect.utils;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.Window;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.cityconnect.R;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -29,6 +32,20 @@ public class CommonUtils {
         }
     }
 
+    public static boolean saveBitmapToFile(Bitmap bitmap, File file) {
+        if (null != bitmap && null != file) {
+            try {
+                FileOutputStream fos = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.flush();
+                fos.close();
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
     public static void showKeyboard(Activity activity, EditText editText) {
         try {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);

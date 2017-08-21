@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.cityconnect.activity.MainActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/services"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -14,7 +19,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:src="@drawable/ic_add_black_24dp" />
 
 </RelativeLayout>

@@ -109,6 +109,7 @@ public class LoginActivity extends AppCompatActivity{
                 public void onFailure(String errorMessage) {
 
                     Log.v("LOGIN",""+errorMessage);
+                    Toast.makeText(LoginActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();
 
                     dialog.dismiss();
                 }
